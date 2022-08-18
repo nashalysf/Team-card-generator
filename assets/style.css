@@ -1,0 +1,150 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../img/bg4.png) ;
+    background-position: center;
+    background-size: 2000px;
+    font-weight: lighter;
+    font-family: Alumni Sans Pinstripe ;
+    margin: 0;
+    padding: 0;
+}
+nav{
+    color: aliceblue;
+    background-color: rgb(15, 19, 41);
+    text-align: center;
+    height: 80px;
+    font-size: 40px;
+    width: 100%;
+}
+.profile-card{
+    background-color: rgba(217, 223, 235, 0.805);
+    width: 400px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    height: 275px;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.upperCard{
+    background-color: rgb(22, 35, 47);
+    width: 400px;
+    position: relative;
+    right: 10px;
+    bottom: 10px;
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px ;
+    
+}
+.Name, .position{
+    color: aliceblue;
+    padding-left: 20px;
+    border: none;
+    font-size: 25px;
+}
+.Name {
+    padding-top: 10px;
+}
+.position{
+    padding-bottom: 10px;
+    padding-left: 60px;
+}
+.userInfo {
+    padding: 15px;
+    padding-top: 2px;
+    margin-top: 2px;
+    overflow: hidden;
+    width: 375px;
+    position: relative;
+}
+
+.ID, .email, .office {
+padding: 10px 3px;
+color: rgb(52, 101, 146);
+font-family: Roboto;
+font-weight: normal;
+border: 2px solid rgb(52, 101, 146);
+background-color: aliceblue;
+overflow: hidden;
+font-size: 16px;
+}
+.ID{
+    margin-bottom: -2px ;
+}
+.office{
+    margin-top: -2px;
+}
+a:link{
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(52, 101, 146);
+}
+.profile-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin-right: 5%;
+}
+img {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+  }
+  img[src*="intern"]{
+    position: absolute;
+    left: 10px;
+    margin-top: 9px;
+    width: 45px;
+  }
+  span{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(2, 15, 71);
+  }
+@media screen and (max-width: 820) {
+    section .profile-card {
+      flex: 1 100%;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 15px;
+      right: 20px;
+      left: 0px;
+      display: flex;
+      flex-direction: column;
+    }
+    section .upperCard{
+        width: 110%;
+    }
+    img{
+        margin-left: 15px;
+    }
+  
+    section .userInfo{
+      width: 100%;
+      position: relative;
+      right: 5px;
+    }
+  
+    .profile-wrapper {
+      flex-basis: 1 100%;
+      flex: 1 100%;
+    }
+    img{
+        position: absolute;
+        margin-top: 2px;
+        left: 0px; 
+        width: 25px;
+    }
+    
+  }
+ 
+
