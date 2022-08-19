@@ -75,7 +75,7 @@ const generateIntern = (intern) => {
           </div> 
           <div class="userInfo">
             <div class="ID"><span>ID:</span> ${intern.ID}</div>
-            <div class="email"><span>Email:</span> <a href="mailto:${engineer.email}">${engineer.email}</a></div>
+            <div class="email"><span>Email:</span> <a href="mailto:${intern.email}">${intern.email}</a></div>
           <div class="office"><span>School:</span> ${intern.school}</div>
           </div>
           </section>
