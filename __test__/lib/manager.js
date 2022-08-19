@@ -1,9 +1,9 @@
-const Employee = require('../lib/Employee');
+const Employee = require('./employee');
 
 class Manager extends Employee {
-    constructor(name, id, email, officeNumber) {
+    constructor(name, ID, email, officeNumber) {
         // call parent here
-        super(name, id, email);
+        super(name, ID, email);
 
         this.officeNumber = officeNumber;
     }

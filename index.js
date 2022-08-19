@@ -1,10 +1,10 @@
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generatePage = require('./__test__/generatePage.js');
 const Manager = require('./__test__/lib/manager');
 const Engineer = require('./__test__/lib/engineer.js');
 const Intern = require('./__test__/lib/intern.js');
+const generatePage = require('./__test__/generatePage.js');
 
 
 const teamArray = [];
@@ -16,8 +16,8 @@ const addManager = () => {
             type: 'input',
             name: 'name',
             message: 'Enter Manager name:',
-            validate: nameInput => {
-                if (nameInput) {
+            validate: managerName => {
+                if (managerName) {
                     return true;
                 } else {
                     console.log('Please enter a name!');
@@ -28,8 +28,8 @@ const addManager = () => {
             type: 'input',
             name: 'ID',
             message: "Enter Manager ID number:",
-            validate: ID => {
-                if (ID) {
+            validate: managerID => {
+                if (managerID) {
                     return true;
                 } else {
                     console.log('Please enter a valid ID number!');
@@ -40,8 +40,8 @@ const addManager = () => {
             type: 'input',
             name: 'email',
             message: 'Enter Manager e-mail:',
-            validate: Email => {
-                if (Email) {
+            validate: managerEmail => {
+                if (managerEmail) {
                     return true;
                 } else {
                     console.log('Please enter an e-mail address!');
@@ -52,8 +52,8 @@ const addManager = () => {
             type: 'input',
             name: 'officeNumber',
             message: "Enter Manager office number:",
-            validate: OfficeNumber => {
-                if (OfficeNumber) {
+            validate: managerOfficeNumber => {
+                if (managerOfficeNumber) {
                     return true;
                 } else {
                     console.log('Please enter an office number!');
@@ -61,9 +61,9 @@ const addManager = () => {
             }
         }
     ])
-    .then(ManagerInfo => {
-        const manager = new Manager (ManagerInfo.name, ManagerInfo.id, ManagerInfo.email, ManagerInfo.officeNumber);
-        teamArray.push(Manager);
+    .then(ManagerData => {
+        const manager = new Manager (ManagerData.name, ManagerData.ID, ManagerData.email, ManagerData.officeNumber);
+        teamArray.push(manager);
     })
 };
 
@@ -73,13 +73,13 @@ const addEmployee = () => {
             type: 'list',
             name: 'role',
             message: 'Would you like to add a team member?',
-            choices: ['Engineer', 'Intern', 'Finish Building Team']
+            choices: ['Engineer', 'Intern', 'Finish']
         },
         {
             type: 'input',
             name: 'name',
             message: 'Enter employee name:',
-            when: (choice) => choice.role !== 'Finish Building Team',
+            when: (choice) => choice.role !== 'Finish',
             validate: Name => {
                 if (Name) {
                     return true;
@@ -92,7 +92,7 @@ const addEmployee = () => {
             type: 'input',
             name: 'ID',
             message: "Enter employee ID:",
-            when: (choice) => choice.role !== 'Please Finish Building Team',
+            when: (choice) => choice.role !== 'Finish',
             validate: ID => {
                 if (ID) {
                     return true;
@@ -105,7 +105,7 @@ const addEmployee = () => {
             type: 'input',
             name: 'email',
             message: 'Enter employee email:',
-            when: (choice) => choice.role !== 'Please Finish Building Team',
+            when: (choice) => choice.role !== 'Finish',
             validate: Email => {
                 if (Email) {
                     return true;
@@ -144,20 +144,19 @@ const addEmployee = () => {
             type: 'confirm',
             name: 'addEmployee',
             message: 'Would you like to add another team member?',
-            when: (choice) => choice.role !== 'Please Finish Building Team',
             default: false
         }
     ])
-    .then(Employee => {
-        if (Employee.role === 'Engineer') {
-            const engineer = new Engineer (Employee.name, Employee.id, Employee.email, Employee.github);
+    .then(employeeData => {
+        if (employeeData.role === 'Engineer') {
+            const engineer = new Engineer (employeeData.name, employeeData.ID, employeeData.email, employeeData.github);
             teamArray.push(engineer);
-        } else if (Employee.role === 'Intern') {
-            const intern = new Intern (Employee.name, Employee.id, Employee.email, Employee.school);
+        } else if (employeeData.role === 'Intern') {
+            const intern = new Intern (employeeData.name, employeeData.ID, employeeData.email, employeeData.school);
             teamArray.push(intern);
         }
 
-        if (Employee.addEmployee) {
+        if (employeeData.addEmployee) {
             return addEmployee(teamArray);
         } else {
             return teamArray;
@@ -168,7 +167,7 @@ const addEmployee = () => {
 // generate index
 const createFile = (fileName, teamArray) => {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/index.html', fileName, err => {
+        fs.writeFile('./index.html', fileName, err => {
             if (err) {
                 reject(err);
                 return;
@@ -180,10 +179,10 @@ const createFile = (fileName, teamArray) => {
         });
     });
 };
-// initialize app
+
 addManager()
-    .then(Employee => {
-        return addEmployee(Employee)
+    .then(employeeData => {
+        return addEmployee(employeeData)
     })
     .then(data => {
         console.log(data);
@@ -198,3 +197,4 @@ addManager()
     .catch(err => {
         console.log(err);
     });
+  

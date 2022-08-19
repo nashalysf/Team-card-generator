@@ -1,9 +1,9 @@
-const Employee = require('../lib/employee');
+const Employee = require('./employee');
 
 class Engineer extends Employee {
-    constructor(name, id, email, github) {
+    constructor(name, ID, email, github) {
         
-        super(name, id, email);
+        super(name, ID, email);
 
         this.github = github;
     }
